@@ -5,7 +5,7 @@
   "shell-version": [
     "48", "49", "50"
   ],
-  "url": "https://github.com/naitikrt678/search-dark-gnome50",
+  "url": "https://github.com/naitikrt678/search-dark-nb",
   "schema-id": "org.gnome.shell.extensions.search-dark",
   "gettext-domain": "search-dark",
   "version": 101

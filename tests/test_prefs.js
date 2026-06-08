@@ -241,15 +241,15 @@ app.connect('activate', (me) => {
   const actions = [
     {
       name: 'open-bug-report',
-      link: 'https://github.com/naitikrt678/search-dark-gnome50/issues',
+      link: 'https://github.com/naitikrt678/search-dark-nb/issues',
     },
     {
       name: 'open-readme',
-      link: 'https://github.com/naitikrt678/search-dark-gnome50',
+      link: 'https://github.com/naitikrt678/search-dark-nb',
     },
     {
       name: 'open-license',
-      link: 'https://github.com/naitikrt678/search-dark-gnome50/blob/master/LICENSE',
+      link: 'https://github.com/naitikrt678/search-dark-nb/blob/master/LICENSE',
     },
   ];
 
