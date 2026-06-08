@@ -1,6 +1,6 @@
 <br/>
 <p align="center">
-  <h3 align="center">Search Light</h3>
+  <h3 align="center">Search Dark</h3>
 
   <p align="center">
     A GNOME Shell 42+ Extension
@@ -9,22 +9,9 @@
   </p>
 </p>
 
-[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/icedman)
-
-![Contributors](https://img.shields.io/github/contributors/icedman/search-light?color=dark-green) ![Forks](https://img.shields.io/github/forks/icedman/search-light?style=social) ![Stargazers](https://img.shields.io/github/stars/icedman/search-light?style=social) ![Issues](https://img.shields.io/github/issues/icedman/search-light) ![License](https://img.shields.io/github/license/icedman/search-light) 
-
-![First Release](https://raw.githubusercontent.com/icedman/search-light/main/screenshots/Screenshot%20from%202022-11-03%2011-53-28.png)
-
+A fork of https://github.com/icedman/search-light made compatible with Gnome 50
 
 This is a Gnome Shell extension that takes the apps search widget out of Overview. Like the macOS spotlight, or Alfred.
-
-### Notice
-
-* Gnome 48 ready for testing
-* Gnome 47 and prior will now be numer gnome-47 branch
-* Gnome 46 port is ready for testing
-* Gnome 45 port is ready for testing
-* Gnome 44 and prior will be under g44 branch
 
 ### Features
 
@@ -42,17 +29,13 @@ Blurred background feature requires **imagemagick** to be installed in the syste
 Manual Installation: 
 - Clone this repo
 ```bash
-$ git clone https://github.com/icedman/search-light
+$ git clone https://github.com/icedman/search-dark-nb
 ```
 - Use the `Makefile` to build and install
 ```bash 
-$ cd search-light
+$ cd search-dark-nb
 $ make
 ```
-
-From Gnome Extensions Repository
-
-Visit [repository](https://extensions.gnome.org/extension/5489/search-light/)
 
 ### Keybinding
 
@@ -62,3 +45,4 @@ Cmd - your Windows logo, or the command logo on mac. Linux also calls this the '
 ### Credits
 
 Blur-My-Shell for background blurring code.
+https://github.com/icedman/search-light for the entire project
