@@ -195,7 +195,7 @@ function add_window_row(placeholder) {
 }
 
 let app = new Adw.Application({
-  application_id: 'com.search-light.GtkApplication',
+  application_id: 'com.search-dark.GtkApplication',
 });
 
 app.connect('activate', (me) => {
@@ -218,7 +218,7 @@ app.connect('activate', (me) => {
 
   let menu_util = builder.get_object('menu_util');
   w.add(menu_util);
-  w.title = 'Search Light';
+  w.title = 'Search Dark';
 
   // const page = builder.get_object('menu_util');
   // const pages_stack = page.get_parent(); // AdwViewStack
@@ -241,22 +241,22 @@ app.connect('activate', (me) => {
   const actions = [
     {
       name: 'open-bug-report',
-      link: 'https://github.com/icedman/dash2dock-lite/issues',
+      link: 'https://github.com/naitikrt678/search-dark-gnome50/issues',
     },
     {
       name: 'open-readme',
-      link: 'https://github.com/icedman/dash2dock-lite',
+      link: 'https://github.com/naitikrt678/search-dark-gnome50',
     },
     {
       name: 'open-license',
-      link: 'https://github.com/icedman/dash2dock-lite/blob/master/LICENSE',
+      link: 'https://github.com/naitikrt678/search-dark-gnome50/blob/master/LICENSE',
     },
   ];
 
   actions.forEach((action) => {
     let act = new Gio.SimpleAction({ name: action.name });
     act.connect('activate', (_) =>
-      Gtk.show_uri(w, action.link, Gdk.CURRENT_TIME),
+      Gio.AppInfo.launch_default_for_uri(action.link, null),
     );
     actionGroup.add_action(act);
   });

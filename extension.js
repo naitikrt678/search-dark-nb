@@ -44,19 +44,19 @@ import {
   gettext as _,
 } from 'resource:///org/gnome/shell/extensions/extension.js';
 
-var SearchLight = GObject.registerClass(
+var SearchDark = GObject.registerClass(
   {},
-  class SearchLight extends St.Widget {
+  class SearchDark extends St.Widget {
     _init() {
       super._init();
-      this.name = 'searchLight';
+      this.name = 'searchDark';
       this.offscreen_redirect = Clutter.OffscreenRedirect.ALWAYS;
       this.layout_manager = new Clutter.BinLayout();
     }
   },
 );
 
-export default class SearchLightExt extends Extension {
+export default class SearchDarkExt extends Extension {
   enable() {
     Main.overview.graphene = Graphene;
     
@@ -134,10 +134,10 @@ export default class SearchLightExt extends Extension {
       this,
     );
 
-    this.mainContainer = new SearchLight();
+    this.mainContainer = new SearchDark();
     this.mainContainer._delegate = this;
     this.container = new St.BoxLayout({
-      name: 'searchLightBox',
+      name: 'searchDarkBox',
       orientation: Clutter.Orientation.VERTICAL,
       reactive: true,
       track_hover: true,
@@ -196,11 +196,7 @@ export default class SearchLightExt extends Extension {
       // this.show();
     }, 500);
 
-    Main.overview.searchLight = this;
-
-    let appInfo = Gio.DesktopAppInfo.new_from_filename(
-      `${this.path}/apps/org.gnome.Calculator.desktop`,
-    );
+    Main.overview.searchDark = this;
 
     let _providers = [];
 
@@ -281,7 +277,7 @@ export default class SearchLightExt extends Extension {
     this._indicator.set_child(icon);
     this._indicator.connectObject(
       'button-press-event',
-      this._toggle_search_light.bind(this),
+      this._toggle_search_dark.bind(this),
       this,
     );
     try {
@@ -327,7 +323,7 @@ export default class SearchLightExt extends Extension {
     this.desktop_background = this._desktopSettings.get_string('picture-uri');
     
     let uuid = GLib.get_user_name();
-    this.desktop_background_blurred = `/tmp/searchlight-${uuid}-bg-blurred.jpg`;
+    this.desktop_background_blurred = `/tmp/searchdark-${uuid}-bg-blurred.jpg`;
 
     if (this.blur_background) {
       //   let color = this.background_color || [0, 0, 0, 0.5];
@@ -408,7 +404,7 @@ export default class SearchLightExt extends Extension {
     }
 
     let background = new St.Widget({
-      name: 'searchLightBlurredBackground',
+      name: 'searchDarkBlurredBackground',
       layout_manager: new Clutter.BinLayout(),
       x: 0,
       y: 0,
@@ -417,7 +413,7 @@ export default class SearchLightExt extends Extension {
     });
 
     // let image = new St.Widget({
-    //   name: 'searchLightBlurredBackgroundImage',
+    //   name: 'searchDarkBlurredBackgroundImage',
     //   x: 0,
     //   y: 0,
     //   width: 20,
@@ -618,7 +614,7 @@ export default class SearchLightExt extends Extension {
     }
 
     if (!disable) {
-      this.accel.listenFor(shortcut, this._toggle_search_light.bind(this));
+      this.accel.listenFor(shortcut, this._toggle_search_dark.bind(this));
     }
   }
 
@@ -636,7 +632,7 @@ export default class SearchLightExt extends Extension {
     }
 
     if (!disable) {
-      this.accel2.listenFor(shortcut, this._toggle_search_light.bind(this));
+      this.accel2.listenFor(shortcut, this._toggle_search_dark.bind(this));
     }
   }
 
@@ -830,8 +826,8 @@ export default class SearchLightExt extends Extension {
         ss.push(`\n  border: ${this.border_thickness}px solid rgba(${clr});`);
       }
 
-      styles.push(`#searchLight {${ss.join(' ')}}`);
-      styles.push(`#searchLightBlurredBackground {${ss.join(' ')}}`);
+      styles.push(`#searchDark {${ss.join(' ')}}`);
+      styles.push(`#searchDarkBlurredBackground {${ss.join(' ')}}`);
     }
 
     // ss.push(`\n background-image: url("${bg}");`);
@@ -852,8 +848,8 @@ export default class SearchLightExt extends Extension {
       // ss.push(`\n border: 2px solid red;`);
       this._background.style = ss.join(' ');
 
-      // styles.push(`#searchLightBlurredBackground {${ss.join(' ')}}`);
-      // styles.push(`#searchLight {${ss.join(' ')}}`);
+      // styles.push(`#searchDarkBlurredBackground {${ss.join(' ')}}`);
+      // styles.push(`#searchDark {${ss.join(' ')}}`);
     } else {
       this._background.style = '';
     }
@@ -864,10 +860,10 @@ export default class SearchLightExt extends Extension {
         let r = rads[Math.floor(this.border_radius)];
         if (r) {
           let st = `StBoxLayout.search-section-content { border-radius: ${r}px !important; }`;
-          st = '#searchLightBlurredBackgroundImage,\n' + st; // has no effect
-          st = '#searchLightBlurredBackground,\n' + st; // has no effect
-          st = '#searchLightBox,\n' + st;
-          st = '#searchLight,\n' + st;
+          st = '#searchDarkBlurredBackgroundImage,\n' + st; // has no effect
+          st = '#searchDarkBlurredBackground,\n' + st; // has no effect
+          st = '#searchDarkBox,\n' + st;
+          st = '#searchDark,\n' + st;
           styles.push(st);
         }
       }
@@ -876,19 +872,19 @@ export default class SearchLightExt extends Extension {
     if (this.font_size !== null) {
       let f = this.font_size_options[this.font_size];
       if (f) {
-        styles.push(`#searchLightBox * { font-size: ${f}pt !important; }`);
+        styles.push(`#searchDarkBox * { font-size: ${f}pt !important; }`);
       }
       f = this.entry_font_size_options[this.entry_font_size];
       if (f) {
         styles.push(
-          `#searchLightBox > StEntry, #searchLightBox > StEntry:focus { font-size: ${f}pt !important; }`,
+          `#searchDarkBox > StEntry, #searchDarkBox > StEntry:focus { font-size: ${f}pt !important; }`,
         );
       }
     }
 
     let clr = this._style.rgba(this.text_color);
     if ((this.text_color || [1, 1, 1, 1])[3] > 0) {
-      styles.push(`#searchLightBox * { color: rgba(${clr}) !important }`);
+      styles.push(`#searchDarkBox * { color: rgba(${clr}) !important }`);
     } else {
       styles.push('/* empty */');
     }
@@ -906,10 +902,10 @@ export default class SearchLightExt extends Extension {
     }
 
     // console.log(styles);
-    this._style.build('custom-search-light', styles);
+    this._style.build('custom-search-dark', styles);
   }
 
-  _toggle_search_light() {
+  _toggle_search_dark() {
     if (this._inOverview) return;
     if (!this._visible) {
       this.show();

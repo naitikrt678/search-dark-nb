@@ -140,13 +140,13 @@ prefKeys.setKeys({});
 Gtk.init();
 
 let app = new Gtk.Application({
-  application_id: 'com.search-light.legacy.GtkApplication',
+  application_id: 'com.search-dark.legacy.GtkApplication',
 });
 
 app.connect('activate', (me) => {
   m = new Gtk.ApplicationWindow({ application: me });
   m.set_default_size(600, 250);
-  m.set_title('Search Light');
+  m.set_title('Search Dark');
 
   let iconTheme = Gtk.IconTheme.get_for_display(Gdk.Display.get_default());
   iconTheme.add_search_path('ui/icons');

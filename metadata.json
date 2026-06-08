@@ -1,12 +1,12 @@
 {
-  "name": "Search Light",
+  "name": "Search Dark",
   "description": "Take the apps search out of overview.",
-  "uuid": "search-light@icedman.github.com",
+  "uuid": "search-dark@naitikrt678.github.com",
   "shell-version": [
     "48", "49", "50"
   ],
-  "url": "https://github.com/icedman/search-light",
-  "schema-id": "org.gnome.shell.extensions.search-light",
-  "gettext-domain": "search-light",
+  "url": "https://github.com/naitikrt678/search-dark-gnome50",
+  "schema-id": "org.gnome.shell.extensions.search-dark",
+  "gettext-domain": "search-dark",
   "version": 101
 }

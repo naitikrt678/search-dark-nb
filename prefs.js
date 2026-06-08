@@ -6,7 +6,7 @@ import Gio from 'gi://Gio';
 
 import { ShortcutSettingWidget } from './shortcuts.js';
 
-const GETTEXT_DOMAIN = 'search-light';
+const GETTEXT_DOMAIN = 'search-dark';
 
 import { schemaId, SettingsKeys } from './preferences/keys.js';
 import { MonitorsConfig } from './monitors.js';
@@ -75,27 +75,27 @@ export default class Preferences extends ExtensionPreferences {
     const actions = [
       {
         name: 'open-bug-report',
-        link: 'https://github.com/icedman/search-light/issues',
+        link: 'https://github.com/naitikrt678/search-dark-gnome50/issues',
       },
       {
         name: 'open-readme',
-        link: 'https://github.com/icedman/search-light',
-      },
-      {
-        name: 'open-buy-coffee',
-        link: 'https://www.buymeacoffee.com/icedman',
+        link: 'https://github.com/naitikrt678/search-dark-gnome50',
       },
       {
         name: 'open-license',
-        link: 'https://github.com/icedman/search-light/blob/master/LICENSE',
+        link: 'https://github.com/naitikrt678/search-dark-gnome50/blob/master/LICENSE',
       },
     ];
 
     actions.forEach((action) => {
       let act = new Gio.SimpleAction({ name: action.name });
-      act.connect('activate', (_) =>
-        Gtk.show_uri(window, action.link, Gdk.CURRENT_TIME),
-      );
+      act.connect('activate', (_) => {
+        try {
+          Gio.AppInfo.launch_default_for_uri(action.link, null);
+        } catch (e) {
+          console.error(`Failed to launch URI: ${action.link}`, e);
+        }
+      });
       actionGroup.add_action(act);
     });
 
@@ -119,11 +119,7 @@ export default class Preferences extends ExtensionPreferences {
     window.add(builder.get_object('appearance'));
     window.set_search_enabled(true);
 
-    if (builder.get_object('qr')) {
-      builder
-        .get_object('qr')
-        .set_from_file(`${UIFolderPath}/images/qr_icedman.png`);
-    }
+
 
     // builder.get_object("providers-group").visible = false;
 
